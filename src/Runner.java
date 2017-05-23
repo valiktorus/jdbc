@@ -54,9 +54,9 @@ public class Runner {
                 }
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("Class not found " + e.getMessage());
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error in SQL" + e.getMessage());
         }
     }
 }
