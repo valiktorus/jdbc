@@ -8,8 +8,8 @@ public class Runner {
     public static void main(String[] args) {
         String className = "org.gjt.mm.mysql.Driver";
         String dbUrl = "jdbc:mysql://localhost/segments";
-        String user = "root";
-        String password = "";
+        String user = "epamlab";
+        String password = "111";
         try {
             Class.forName(className);
             Connection connection = null;
@@ -20,7 +20,7 @@ public class Runner {
                 List<NumLen> numLens = new ArrayList<>();
                 connection = DriverManager.getConnection(dbUrl, user, password);
                 statement = connection.createStatement();
-                resultSet = statement.executeQuery("SELECT FLOAR(ABS(x2-x1) + 0.5) AS len, COUNT (*) AS num\n" +
+                resultSet = statement.executeQuery("SELECT FLOOR(ABS(x2-x1) + 0.5) AS len, COUNT(*) AS num\n" +
                         "FROM coordinates GROUP BY len ORDER BY len;");
                 while (resultSet.next()) {
                     NumLen numLen = new NumLen(resultSet.getInt(1), resultSet.getInt(2));
@@ -37,8 +37,7 @@ public class Runner {
                 resultSet = statement.executeQuery("SELECT * FROM frequencies WHERE len > num;");
                 System.out.println("required values:");
                 while (resultSet.next()){
-                    System.out.println(resultSet.getInt(1) + ";" + resultSet.getInt(2));
-
+                    System.out.printf("%d;%d%n", resultSet.getInt(1), resultSet.getInt(2));
                 }
             } finally {
                 if (resultSet != null && !resultSet.isClosed()) {
