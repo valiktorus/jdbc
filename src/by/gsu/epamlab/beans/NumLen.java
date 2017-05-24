@@ -1,4 +1,4 @@
-package by.gsu.epamlab;
+package by.gsu.epamlab.beans;
 
 public class NumLen {
     private final int len;
@@ -15,5 +15,10 @@ public class NumLen {
 
     public int getNum() {
         return num;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d;%d%n", len, num);
     }
 }
